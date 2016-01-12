@@ -1,0 +1,233 @@
+@width: 800px;
+@margin: 20px;
+
+@blue: #3cf;
+@orange: #fc3;
+@purple: spin(@blue, 120);
+@green: spin(@purple, 120);
+
+@headerColor: @blue;
+@gamesColor: @orange;
+@appsColor: @purple;
+@musicColor: @green;
+@footerColor: @blue;
+
+.x-sans-font() {
+
+  font-family: 'Maven Pro', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+
+}
+
+.x-border(@color) {
+
+  border: 1px solid @color;
+  border-top: 5px solid @color;
+  border-radius: 0 @margin;
+
+}
+
+.x-block(@borderColor) {
+
+  margin: @margin auto (2 * @margin) auto;
+  background-color: #1a1a1a;
+  background-image: linear-gradient(transparent, rgba(0,0,0,.1));
+  background-size: 5px 5px;
+
+  @media (min-width: @width) {
+    width: @width;
+    .x-border(@borderColor);
+    box-shadow: 0 0 (2 * @margin) 0 @borderColor;
+  }
+
+}
+
+.x-section(@color) {
+
+  .x-block(@color);
+
+  h2 {
+    border-top: 1px solid @color;
+    text-align: center;
+  }
+
+}
+
+.x-clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear:both;
+  }
+}
+
+html {
+
+  .x-sans-font;
+
+  color: white;
+  text-align: justify;
+
+  background-color: black;
+  background-image: linear-gradient(90deg, transparent 90%, fade(white, 10%) 90%);
+  background-size: 5px;
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: @margin;
+  text-shadow: 0px 0px @margin black;
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 36px; }
+h3 { font-size: 28px; }
+h4 { font-size: 24px; }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: 0.5em;
+}
+
+a, a:hover, a:visited {
+
+  color: @blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+}
+
+p {
+  padding: @margin;
+}
+
+ul, li {
+  margin: (@margin/2) 0;
+}
+
+hr {
+  height: 0;
+  border: none;
+  border-top: 1px dashed white;
+}
+
+header {
+
+  .x-block(@headerColor);
+
+  h1 {
+    font-size: 64px;
+  }
+
+}
+
+footer {
+  .x-block(@footerColor);
+}
+
+header, footer, nav {
+  p {
+    text-align: center;
+  }
+}
+
+nav {
+  @media (min-width: @width) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: fadeout(#1a1a1a, 20%);
+    border-bottom: 1px solid @blue;
+    border-left: 1px solid @blue;
+    border-radius: 0 0 0 @margin;
+    box-shadow: 0 0 (@margin / 2) @blue;
+  }
+}
+
+#apps { .x-section(@appsColor); }
+#games { .x-section(@gamesColor); }
+#music { .x-section(@musicColor); }
+
+ul.full-list > li {
+
+  .x-clearfix();
+
+  @media (max-width: @width) {
+    text-align: center;
+  }
+
+  > img:first-child {
+
+    width: 256px;
+    margin: @margin;
+
+    @media (min-width: @width) {
+      .x-border(white);
+      float: left;
+    }
+
+    @media (max-width: @width) {
+      border: 1px solid white;
+    }
+
+  }
+
+  > h3 {
+
+    font-style: italic;
+
+    @media (min-width: @width) {
+      border-bottom: 1px dashed white;
+    }
+
+  }
+
+  .download {
+    @media (min-width: @width) {
+      float: right;
+      text-align: right;
+      border-left: 1px dashed white;
+      border-bottom: 1px dashed white;
+    }
+
+  }
+
+  > ul {
+
+    @media (min-width: @width) {
+      float: left;
+    }
+
+    > li:first-child {
+      font-weight: 700;
+    }
+
+  }
+
+}
+
+ul.short-list {
+
+  h3 {
+    float: left;
+    width: 30%;
+    text-align: right;
+    border-right: 1px dashed white;
+    margin-right: @margin;
+  }
+
+  p {
+    .x-clearfix();
+    vertical-align: bottom;
+  }
+
+}
